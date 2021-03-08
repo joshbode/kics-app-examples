@@ -1,10 +1,10 @@
 app:
   kelvin:
     core:
-      data_models: []
+      data_models: [ ]
       interface:
         client:
-          args: []
+          args: [ ]
           executable: run_app
           period: 1.0
           spawn: true
@@ -23,11 +23,21 @@ app:
     images:
       base: ''
       builder: ''
-    system_packages: []
+    system_packages: [ ]
   type: kelvin
 info:
   description: shared-file-writer
   name: shared-file-writer
   title: shared-file-writer
-  version: 1.0.0
+  version: 2.0.0
 spec_version: 1.1.0
+system:
+  resources:
+    cpu: '0.1'
+    memory: 256Mi
+  volumes:
+    - host:
+        source: /acp-shared-data
+      name: shared-data
+      target: /opt/kelvin/app/shared
+      type: host
