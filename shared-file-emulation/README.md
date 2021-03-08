@@ -1,17 +1,14 @@
 # Shared file reader and writer
 
-Similar to the ACP data sharing example, this project shows how to share data between two applications, in the **
-emulation system**, using a **shared volume**
-
+Similar to the ACP data sharing example, this project shows how to share data between two applications, 
+in the **emulation system**, using a **shared volume**
 ## Initial assumptions
 
-1 - Applications build using the **kelvin** tool will be hosted, inside the container, under **/opt/kelvin/app**
+1 - Applications built using the **kelvin** tool will be hosted, inside the container, under **/opt/kelvin/app**.
 
-2 - In the emulation system, volumes are not shared through the **app.yaml** but resorting to the **--shared-dir**
-option in the **kelvin emulation start** command.
+2 - In the emulation system, volumes are not shared through the **app.yaml** but resorting to the **--shared-dir** option in the **kelvin emulation start** command.
 
-3 - In the **--shared-dir** option is specified, a link between the provided path and **/opt/kelvin/app/shared/** will
-be established. All data output to **/opt/kelvin/app/shared** will be available on the provided directory.
+3 - When the **--shared-dir** option is specified, a link between the provided path and **/opt/kelvin/app/shared/** will be established. All data output to **/opt/kelvin/app/shared** will be available on the provided directory.
 
 ## Example description
 
