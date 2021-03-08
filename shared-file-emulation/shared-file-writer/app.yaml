@@ -1,0 +1,33 @@
+app:
+  kelvin:
+    core:
+      data_models: []
+      interface:
+        client:
+          args: []
+          executable: run_app
+          period: 1.0
+          spawn: true
+        type: client
+      language:
+        python:
+          entry_point: shared_file_writer.shared_file_writer:App
+          requirements: requirements.txt
+        type: python
+      logging_level: INFO
+      runtime:
+        historize_inputs: false
+        historize_outputs: true
+        type: opcua
+      version: 4.0.0
+    images:
+      base: ''
+      builder: ''
+    system_packages: []
+  type: kelvin
+info:
+  description: shared-file-writer
+  name: shared-file-writer
+  title: shared-file-writer
+  version: 1.0.0
+spec_version: 1.1.0
