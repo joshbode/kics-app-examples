@@ -1,0 +1,70 @@
+app:
+  kelvin:
+    core:
+      data_models:
+        - name: raw.float32
+          version: 2.0.0
+      interface:
+        client:
+          executable: run_app
+          period: 1
+          spawn: true
+        type: client
+      language:
+        python:
+          entry_point: 'hvac_refinery.hvac_refinery:App'
+          requirements: requirements.txt
+        type: python
+      logging_level: INFO
+      runtime:
+        historize_inputs: false
+        historize_outputs: true
+        type: opcua
+      version: 4.0.0
+      inputs:
+        - name: pressure_psi
+          data_model: raw.float32
+        - name: pressure_bar
+          data_model: raw.float32
+      refinery:
+        input_stage:
+          - type: scale
+            scale:
+              actions:
+                - src: pressure_bar.value
+                  dest: pressure_bar.value
+                  scaling: 0.0689476
+            inputs:
+              - name: pressure_bar
+                data_model: raw.float32
+            outputs:
+              - name: pressure_bar
+                data_model: raw.float32
+        output_stage: []
+      connections:
+        - name: publisher
+          type: opcua
+          opcua:
+            endpoint: 'opc.tcp://kcf-app-rando-publisher-python.app:48010'
+            registry_map:
+              inputs:
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: pressure_psi
+                  node: ns=2;s=pressure_psi
+                  external_tag: ns=2;s=rando_publisher.raw.float32_example
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: pressure_bar
+                  node: ns=2;s=pressure_bar
+                  external_tag: ns=2;s=rando_publisher.raw.float32_example
+              outputs: []
+  type: kelvin
+info:
+  description: hvac-refinery
+  name: hvac-refinery
+  title: hvac-refinery
+  version: 1.0.0
+spec_version: 1.0.0

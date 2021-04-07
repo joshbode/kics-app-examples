@@ -1,0 +1,103 @@
+app:
+  kelvin:
+    core:
+      data_models:
+        - name: my.custom.hvac_data_model
+          version: 1.0.0
+          path: datamodel/hvac_data_model.yaml
+        - name: raw.float32
+          version: 2.0.0
+        - name: raw.int32
+          version: 2.0.0
+      interface:
+        client:
+          executable: run_app
+          period: 1
+          spawn: true
+        type: client
+      language:
+        python:
+          entry_point: 'hvac_refinery.hvac_refinery:App'
+          requirements: requirements.txt
+        type: python
+      logging_level: INFO
+      runtime:
+        historize_inputs: false
+        historize_outputs: true
+        type: opcua
+      version: 4.0.0
+      inputs:
+        - name: temperature
+          data_model: raw.float32
+        - name: setpoint
+          data_model: raw.float32
+        - name: power
+          data_model: raw.int32
+        - name: hvac_system
+          data_model: my.custom.hvac_data_model
+      refinery:
+        input_stage:
+          - type: compose
+            compose:
+              actions:
+                - src: temperature.value
+                  dest: hvac_system.temperature
+                - src: setpoint.value
+                  dest: hvac_system.setpoint
+                - src: power.value
+                  dest: hvac_system.power
+            inputs:
+              - name: temperature
+                data_model: raw.float32
+              - name: setpoint
+                data_model: raw.float32
+              - name: power
+                data_model: raw.int32
+            outputs:
+              - name: hvac_system
+                data_model: my.custom.hvac_data_model
+      connections:
+        - name: publisher
+          type: opcua
+          opcua:
+            endpoint: 'opc.tcp://kcf-app-rando-publisher-python.app:48010'
+            registry_map:
+              inputs:
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: temperature
+                  node: ns=2;s=temperature
+                  external_tag: ns=2;s=rando_publisher.raw.float32_example
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: setpoint
+                  node: ns=2;s=setpoint
+                  external_tag: ns=2;s=rando_publisher.raw.float64_example
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: power
+                  node: ns=2;s=power
+                  external_tag: ns=2;s=rando_publisher.raw.int32_example
+              outputs: []
+        - name: localhost
+          type: opcua
+          opcua:
+            endpoint: 'opc.tcp://localhost:48010'
+            registry_map:
+              inputs:
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: hvac_system
+                  node: ns=2;s=hvac_system
+              outputs: []
+  type: kelvin
+info:
+  description: hvac-refinery
+  name: hvac-refinery
+  title: hvac-refinery
+  version: 1.0.0
+spec_version: 1.0.0

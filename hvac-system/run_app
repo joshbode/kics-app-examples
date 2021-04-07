@@ -1,0 +1,11 @@
+#! /bin/bash
+
+BASE_DIR=$(realpath $(dirname $0))
+
+export PYTHONPATH=${BASE_DIR}${PYTHONPATH:+:${PYTHONPATH}}
+export VIRTUAL_ENV=${BASE_DIR}/venv
+export PATH=${VIRTUAL_ENV}/bin${PATH:+:${PATH}}
+
+cd "${BASE_DIR}"
+
+exec python -m kelvin.app run app -c app.yaml hvac_system:App "$@"
