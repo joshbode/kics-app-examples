@@ -1,0 +1,89 @@
+app:
+  kelvin:
+    core:
+      data_models:
+        - name: raw.float32
+          version: 2.0.0
+        - name: raw.uint64
+          version: 2.0.0
+        - name: raw.text
+          version: 2.0.0
+      interface:
+        client:
+          executable: run_app
+          period: 5
+          spawn: true
+        type: client
+      language:
+        python:
+          entry_point: 'hvac_refinery.hvac_refinery:App'
+          requirements: requirements.txt
+        type: python
+      logging_level: INFO
+      runtime:
+        historize_inputs: false
+        historize_outputs: true
+        type: opcua
+      version: 4.0.0
+      inputs:
+        - name: sample_metric_1
+          data_model: raw.float32
+        - name: sample_metric_2
+          data_model: raw.uint64
+        - name: sample_metric_3
+          data_model: raw.text
+      refinery:
+        input_stage:
+          - type: timestamp_alignment
+            timestamp_alignment:
+              actions:
+                - src: unused
+                  dest: unused
+                  operation: avg
+            inputs:
+              - name: sample_metric_1
+                data_model: raw.float32
+              - name: sample_metric_2
+                data_model: raw.uint64
+              - name: sample_metric_3
+                data_model: raw.text
+            outputs:
+              - name: sample_metric_1
+                data_model: raw.float32
+              - name: sample_metric_2
+                data_model: raw.uint64
+              - name: sample_metric_3
+                data_model: raw.text
+      connections:
+        - name: publisher
+          type: opcua
+          opcua:
+            endpoint: 'opc.tcp://kcf-app-rando-publisher-python.app:48010'
+            registry_map:
+              inputs:
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: sample_metric_1
+                  node: ns=2;s=sample_metric_1
+                  external_tag: ns=2;s=rando_publisher.raw.float32_example
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: sample_metric_2
+                  node: ns=2;s=sample_metric_2
+                  external_tag: ns=2;s=rando_publisher.raw.uint64_example
+                - historize: true
+                  upload: false
+                  access: RW
+                  name: sample_metric_3
+                  node: ns=2;s=sample_metric_3
+                  external_tag: ns=2;s=rando_publisher.raw.text_example
+              outputs: []
+  type: kelvin
+info:
+  description: hvac-refinery
+  name: hvac-refinery
+  title: hvac-refinery
+  version: 1.0.0
+spec_version: 1.0.0
