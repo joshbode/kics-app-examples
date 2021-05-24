@@ -1,0 +1,7 @@
+# This is where required Python libraries are listed
+# pandas
+# numpy
+# scikit-learn
+pytest
+kelvin-sdk-client
+jinja2
