@@ -9,50 +9,48 @@ import random
 
 
 class App(DataApplication):
-    """Application."""
-    def emit_message(self, metric, value):
-        # Create message
-        msg = self.make_message(
-            metric['type'],
-            name=metric['name'],
-            value=round(value, 2)
-        )
 
-        print('[ Published:')
-        print('[ ' + metric['type'] + ' -> timestamp: ' + str(msg._.time_of_validity*1e-9))
-        print('[ name: ' + metric['name'])
-        print('[ value: ' + str(msg.value))
 
-        # Emit message
-        self.emit(msg)
+    def init(self) -> None:
+        # To access the declared inputs
+        print('\nInputs: ' + str(self.interface.inputs))
+        # To access the declared outputs
+        print('\nOutputs: ' + str(self.interface.outputs))
+        # To access the configuration block under app->kelvin-configuration
+        print('\nConfigurations: ' + str(self.config))
+        # To access the complete app configuration i.e. app.yaml
+        print('\nComplete app configuration: ' + str(self.app_configuration))
+        print('\nData: ' + str(self.data))
+
 
     def process(self) -> None:
         """Process data."""
-
-        # App Configuration -> app.kelvin.core.configuration @ app.yaml
-        print('Config: ' + str(self.config))
-        # Input Data
-        print('Input Data: ' + str(self.data))
-        # app.kelvin.core.inputs @ app.yaml
-        print('Inputs: ' + str(self.inputs))
-        # app.kelvin.core.outputs @ app.yaml
-        print('Outputs: ' + str(self.outputs))
-
         # Get app configurations
-        enabled = self.config['producer']['enabled']
-
+        enabled = self.config.enabled
         if enabled:
-            min_value = self.config['producer'].get('min')
-            max_value = self.config['producer'].get('max')
-
+            min_value = self.config.min
+            max_value = self.config.max
             if min_value is None or max_value is None:
                 print('Missing configuration keys (min/max).')
-
                 return
-
-            for metric in self.outputs:
+            for metric in self.interface.outputs:
                 value = random.uniform(min_value, max_value)
-
-                self.emit_message(self.outputs[metric], value)
+                self.emit_message(self.interface.outputs[metric], value)
         else:
             print('Data Generation is disabled.')
+
+
+
+    def emit_message(self, metric, value):
+        # Create message
+        msg = self.make_message(
+            metric.data_type,
+            name=metric.name,
+            value=round(value, 2)
+        )
+        print('[ Published:')
+        print('[ ' + metric.data_type + ' -> timestamp: ' + str(msg._.time_of_validity*1e-9))
+        print('[ name: ' + metric.name)
+        print('[ value: ' + str(msg.value))
+        # Emit message
+        self.emit(msg)
