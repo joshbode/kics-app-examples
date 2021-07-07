@@ -1,5 +1,6 @@
 app:
   kelvin:
+    logging_level: INFO
     data_types: [ ]
     inputs:
       - data_type: raw.float32
