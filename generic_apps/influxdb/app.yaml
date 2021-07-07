@@ -1,26 +1,23 @@
 app:
   docker:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: 'influxdb:1.8.3'
+    args: []
+    context: .
+    dockerfile: Dockerfile
   type: docker
 info:
   description: kelvin-influxdb-tutorial
   name: kelvin-influxdb-tutorial
   title: kelvin-influxdb-tutorial
   version: 1.0.0
-spec_version: 1.0.0
+spec_version: 2.0.0
 system:
   ports:
-    - service:
-        exposed: true
+    - name: http
+      type: host
+      host:
         port: 8086
-        exposed_port: 30100
-      type: service
-      name: influxdb-port
-  volumes:
-    - name: influxdb-data
-      type: persistent
-      target: /var/lib/influxdb
   privileged: false
+  volumes:
+    - name: data
+      target: /var/lib/influxdb
+      type: persistent

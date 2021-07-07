@@ -1,0 +1,433 @@
+FROM python:3.6
+EXPOSE 5000
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+
+Step 1/10 : FROM python:3.6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---> 5fad76530472
+Step 2/10 : EXPOSE 5000
+
+---> Running in 1cc43e71f48f
+Removing intermediate container 1cc43e71f48f
+---> 03d05d533a4b
+Step 3/10 : COPY . /app
+
+---> c7ce4bed4bb3
+Step 4/10 : WORKDIR /app
+
+---> Running in 8233ee72019e
+Removing intermediate container 8233ee72019e
+---> b581edd2af11
+Step 5/10 : RUN pip install -r requirements.txt
+
+---> Running in 68b8a607f9ca
+Collecting flask
+Downloading Flask-2.0.1-py3-none-any.whl (94 kB)
+Collecting Jinja2>=3.0
+Downloading Jinja2-3.0.1-py3-none-any.whl (133 kB)
+Collecting click>=7.1.2
+Downloading click-8.0.1-py3-none-any.whl (97 kB)
+Collecting Werkzeug>=2.0
+Downloading Werkzeug-2.0.1-py3-none-any.whl (288 kB)
+Collecting itsdangerous>=2.0
+Downloading itsdangerous-2.0.1-py3-none-any.whl (18 kB)
+Collecting importlib-metadata
+Downloading importlib_metadata-4.6.1-py3-none-any.whl (17 kB)
+Collecting MarkupSafe>=2.0
+Downloading MarkupSafe-2.0.1-cp36-cp36m-manylinux2010_x86_64.whl (30 kB)
+Collecting dataclasses
+Downloading dataclasses-0.8-py3-none-any.whl (19 kB)
+Collecting zipp>=0.5
+Downloading zipp-3.5.0-py3-none-any.whl (5.7 kB)
+Collecting typing-extensions>=3.6.4
+Downloading typing_extensions-3.10.0.0-py3-none-any.whl (26 kB)
+Installing collected packages: zipp, typing-extensions, MarkupSafe, importlib-metadata, dataclasses, Werkzeug, Jinja2, itsdangerous, click, flask
+Successfully installed Jinja2-3.0.1 MarkupSafe-2.0.1 Werkzeug-2.0.1 click-8.0.1 dataclasses-0.8 flask-2.0.1 importlib-metadata-4.6.1 itsdangerous-2.0.1 typing-extensions-3.10.0.0 zipp-3.5.0
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[0m
+Removing intermediate container 68b8a607f9ca
+---> d475e2c07b40
+Step 6/10 : ENTRYPOINT ["python"]
+
+---> Running in 9967b2a339ad
+Removing intermediate container 9967b2a339ad
+---> 2869f416bb7c
+Step 7/10 : CMD ["app.py"]
+
+---> Running in 3bd1cac1d934
+Removing intermediate container 3bd1cac1d934
+---> ce96436c988a
+Step 8/10 : LABEL name=flask-server:1.0.0
+
+---> Running in b118565b3b9e
+Removing intermediate container b118565b3b9e
+---> 091b03e2b53b
+Step 9/10 : LABEL source=ksdk
+
+---> Running in ab426bccb8e8
+Removing intermediate container ab426bccb8e8
+---> 5b6c45c3123e
+Step 10/10 : LABEL type=docker
+
+---> Running in 97e765c74751
+Removing intermediate container 97e765c74751
+---> eabcd12b4ac9
+
+Successfully built eabcd12b4ac9
+Successfully tagged flask-server:1.0.0
