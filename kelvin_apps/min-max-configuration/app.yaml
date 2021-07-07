@@ -1,9 +1,6 @@
 app:
   kelvin:
-    data_types:
-      - name: complex.config
-        path: datatype/complex_config__0-0-1.yml
-        version: 0.0.1
+    data_types: [ ]
     inputs:
       - data_type: raw.float32
         name: temperature
