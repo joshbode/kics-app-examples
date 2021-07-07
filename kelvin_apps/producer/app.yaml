@@ -1,9 +1,5 @@
 app:
   kelvin:
-    data_types:
-      - name: kelvin.producer
-        version: 2.0.1
-        path: datatype/producer.yml
     language:
       python:
         entry_point: producer.producer:App

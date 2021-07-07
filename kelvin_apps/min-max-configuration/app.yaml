@@ -1,12 +1,10 @@
 app:
   kelvin:
-    data_types: [ ]
     inputs:
       - data_type: raw.float32
-        name: temperature
+        name: tempesrature
         sources:
           - asset_names: [ emulation ]
-            workload_names: [ ]
     configuration:
       min_threshold: 10
       max_threshold: 100

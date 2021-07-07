@@ -1,6 +1,5 @@
 app:
   kelvin:
-    data_types: []
     language:
       python:
         entry_point: shared_file_reader.shared_file_reader:App

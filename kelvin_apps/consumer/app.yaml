@@ -1,6 +1,5 @@
 app:
   kelvin:
-    data_types: []
     inputs:
       - data_type: raw.float32
         name: temperature_in_celsius

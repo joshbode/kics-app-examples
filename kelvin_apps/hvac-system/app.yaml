@@ -1,23 +1,19 @@
 app:
   kelvin:
     logging_level: INFO
-    data_types: [ ]
     inputs:
       - data_type: raw.float32
         name: setpoint.temperature
         sources:
           - asset_names: [ emulation ]
-            workload_names: [ ]
       - data_type: raw.uint64
         name: setpoint.humidity
         sources:
           - asset_names: [ emulation ]
-            workload_names: [ ]
       - data_type: raw.int32
         name: setpoint.rpm
         sources:
           - asset_names: [ emulation ]
-            workload_names: [ ]
     language:
       python:
         entry_point: hvac_system.hvac_system:App

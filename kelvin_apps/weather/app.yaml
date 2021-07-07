@@ -1,17 +1,14 @@
 app:
   kelvin:
-    data_types: []
     inputs:
       - data_type: raw.float32
         name: temperature
         sources:
-          - asset_names: []
-            workload_names: []
+          - asset_names: [ emulation ]
       - data_type: raw.float32
         name: humidity
         sources:
-          - asset_names: []
-            workload_names: []
+          - asset_names: [ emulation ]
     language:
       python:
         entry_point: weather.weather:App
@@ -21,13 +18,11 @@ app:
       - data_type: raw.float32
         name: temperature_mean
         targets:
-          - asset_names: []
-            workload_names: []
+          - asset_names: [ emulation ]
       - data_type: raw.float32
         name: humidity_mean
         targets:
-          - asset_names: []
-            workload_names: []
+          - asset_names: [ emulation ]
   type: kelvin
 info:
   description: weather

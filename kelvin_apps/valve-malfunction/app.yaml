@@ -1,62 +1,48 @@
 app:
   kelvin:
-    core:
-      configuration:
-        - name: kelvin.app
-          data_model: kelvin.app
-          values:
-            - name: topics
-              value:
-                "#":
-                  target: "{name}"
-                  storage_type: buffer
-                  storage_config:
-                    getter: value
-                    window:
-                      seconds: 5
-            - name: checks
-              value:
-                "gas_flow":
-                  min_count: 3
-                "valve_state":
-                  min_count: 3
-      data_models:
-        - name: raw.float32
-          version: 2.0.0
-      outputs:
-        - name: valve_malfunction
-          data_model: raw.float32
-      inputs:
-        - name: gas_flow
-          data_model: raw.float32
-        - name: valve_state
-          data_model: raw.float32
-      interface:
-        client:
-          args: []
-          executable: run_app
-          period: 1.0
-          spawn: true
-        type: client
-      language:
-        python:
-          entry_point: valve_malfunction.valve_malfunction:App
-          requirements: requirements.txt
-        type: python
-      logging_level: INFO
-      runtime:
-        historize_inputs: false
-        historize_outputs: true
-        type: opcua
-      version: 4.0.0
-    images:
-      base: ''
-      builder: ''
-    system_packages: []
+    configuration:
+      - name: kelvin.app
+        data_model: kelvin.app
+        values:
+          - name: topics
+            value:
+              "#":
+                target: "{name}"
+                storage_type: buffer
+                storage_config:
+                  getter: value
+                  window:
+                    seconds: 5
+          - name: checks
+            value:
+              "gas_flow":
+                min_count: 3
+              "valve_state":
+                min_count: 3
+    inputs:
+      - data_type: raw.float32
+        name: gas_flow
+        sources:
+          - asset_names: [ emulation ]
+      - data_type: raw.float32
+        name: valve_state
+        sources:
+          - asset_names: [ emulation ]
+    language:
+      python:
+        entry_point: valve_malfunction.valve_malfunction:App
+        requirements: requirements.txt
+      type: python
+    outputs:
+      - data_type: raw.float32
+        name: valve_malfunction
+        targets:
+          - asset_names: [ ]
+            workload_names: [ ]
   type: kelvin
 info:
   description: valve-malfunction
   name: valve-malfunction
   title: valve-malfunction
   version: 1.0.0
-spec_version: 1.0.0
+spec_version: 2.0.0

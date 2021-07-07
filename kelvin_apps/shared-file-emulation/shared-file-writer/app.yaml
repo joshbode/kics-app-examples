@@ -1,6 +1,5 @@
 app:
   kelvin:
-    data_types: []
     language:
       python:
         entry_point: shared_file_writer.shared_file_writer:App

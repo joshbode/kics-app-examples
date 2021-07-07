@@ -1,6 +1,5 @@
 app:
   kelvin:
-    data_types: [ ]
     language:
       python:
         entry_point: api_poller.api_poller:App
@@ -10,13 +9,11 @@ app:
       - data_type: raw.float32
         name: avg_temp
         targets:
-          - asset_names: [ ]
-            workload_names: [ ]
+          - asset_names: [ emulation ]
       - data_type: raw.float32
         name: temp_f
         targets:
-          - asset_names: [ ]
-            workload_names: [ ]
+          - asset_names: [ emulation ]
   type: kelvin
 info:
   description: api-poller
