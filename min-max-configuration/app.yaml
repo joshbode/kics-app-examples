@@ -1,70 +1,37 @@
 app:
   kelvin:
-    core:
-      data_models:
-        - name: raw.float32
-          version: 2.0.0
-        - name: complex.config
-          version: 0.0.1
-          path: datamodel/complex_config__0-0-1.yml
-      inputs:
-        - name: temperature
-          data_model: raw.float32
-      configuration:
-        - name: complex_config
-          data_model: complex.config
-          values:
-            - name: min_threshold
-              value: 10
-            - name: max_threshold
-              value: 100
-            - name: rejection_messages
-              value:
-                - "The values are not correct"
-                - "Please provide and adequate value"
-                - "The provided value does not comply with the thresholds"
-            - name: success_message
-              value: "The received value was accepted!"
-      connections:
-        - name: input-connection
-          type: opcua
-          opcua:
-            endpoint: opc.tcp://temperature-input-app.app:48010
-            registry_map:
-              parameters: [ ]
-              inputs:
-                - historize: true
-                  upload: false
-                  access: RW
-                  name: temperature
-                  node: ns=2;s=temperature
-              outputs: [ ]
-      interface:
-        client:
-          args: [ ]
-          executable: run_app
-          period: 1.0
-          spawn: true
-        type: client
-      language:
-        python:
-          entry_point: min_max_configuration.min_max_configuration:App
-          requirements: requirements.txt
-        type: python
-      logging_level: INFO
-      runtime:
-        historize_inputs: false
-        historize_outputs: true
-        type: opcua
-      version: 4.0.0
-    images:
-      base: ''
-      builder: ''
-    system_packages: [ ]
+    data_types:
+      - name: complex.config
+        path: datatype/complex_config__0-0-1.yml
+        version: 0.0.1
+    inputs:
+      - data_type: raw.float32
+        name: temperature
+        sources:
+          - asset_names: [ emulation ]
+            workload_names: [ ]
+    configuration:
+      min_threshold: 10
+      max_threshold: 100
+      rejection_messages:
+        - "The values are not correct"
+        - "Please provide and adequate value"
+        - "The provided value does not comply with the thresholds"
+      success_message: "The received value was accepted!"
+    language:
+      python:
+        entry_point: min_max_configuration.min_max_configuration:App
+        requirements: requirements.txt
+      type: python
   type: kelvin
 info:
   description: min-max-configuration
   name: min-max-configuration
   title: min-max-configuration
   version: 1.0.0
-spec_version: 1.1.0
+spec_version: 2.0.0
+
+
+
+
+

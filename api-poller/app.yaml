@@ -1,79 +1,28 @@
 app:
   kelvin:
-    core:
-      configuration:
-        - name: kelvin.app
-          data_model: kelvin.app
-          values:
-            - name: topics
-              value:
-                "#":
-                  target: "{name}"
-                  storage_type: buffer
-                  storage_config:
-                    getter: value
-                    window:
-                      minutes: 1
-            - name: checks
-              value:
-                "temp_f":
-                  min_count: 3
-      data_models:
-        - name: raw.float32
-          version: 2.0.0
-      outputs:
-        - name: avg_temp
-          data_model: raw.float32
-        - name: temp_f
-          data_model: raw.float32
-      connections:
-        - name: myconnection
-          type: opcua
-          opcua:
-            endpoint: opc.tcp://localhost:48010
-            registry_map:
-              parameters: []
-              inputs: []
-              outputs:
-                - name: avg_temp
-                  node: ns=2;s=avg_temp
-                - name: temp_f
-                  node: ns=2;s=temp_f
-      interface:
-        client:
-          executable: run_app
-          period: 15
-          spawn: true
-        type: client
-      language:
-        python:
-          entry_point: 'api_poller.api_poller:App'
-          requirements: requirements.txt
-        type: python
-      logging_level: INFO
-      runtime:
-        historize_inputs: false
-        historize_outputs: true
-        type: opcua
-      version: 4.0.0
-      uploader:
-        enabled: true
-        host: 'https://localhost'
-        interval: 30
-        backoff: 2
-        max_backoff: 60
-        batch: 5000
-        dir: ./storage
-        acp_name: unknown
-        source: unknown
-        state_file: kcore-uploader.state
-        compression: gzip
+    data_types: [ ]
+    language:
+      python:
+        entry_point: api_poller.api_poller:App
+        requirements: requirements.txt
+      type: python
+    outputs:
+      - data_type: raw.float32
+        name: avg_temp
+        targets:
+          - asset_names: [ ]
+            workload_names: [ ]
+      - data_type: raw.float32
+        name: temp_f
+        targets:
+          - asset_names: [ ]
+            workload_names: [ ]
   type: kelvin
 info:
   description: api-poller
   name: api-poller
   title: api-poller
   version: 1.0.0
-spec_version: 1.0.0
+spec_version: 2.0.0
 system:
   privileged: false

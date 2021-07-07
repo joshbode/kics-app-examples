@@ -1,44 +1,26 @@
 app:
   kelvin:
-    core:
-      data_models: []
-      interface:
-        client:
-          args: []
-          executable: run_app
-          period: 1.0
-          spawn: true
-        type: client
-      language:
-        python:
-          entry_point: shared_file_reader.shared_file_reader:App
-          requirements: requirements.txt
-        type: python
-      logging_level: INFO
-      runtime:
-        historize_inputs: false
-        historize_outputs: true
-        type: opcua
-      version: 4.0.0
-    images:
-      base: ''
-      builder: ''
-    system_packages: []
+    data_types: []
+    language:
+      python:
+        entry_point: shared_file_reader.shared_file_reader:App
+        requirements: requirements.txt
+      type: python
   type: kelvin
 info:
   description: shared-file-reader
   name: shared-file-reader
   title: shared-file-reader
   version: 1.0.0
-spec_version: 1.1.0
+spec_version: 2.0.0
 system:
+  privileged: false
   resources:
     cpu: '0.1'
     memory: 256Mi
   volumes:
-  -
-    host:
-      source: /shared-data
-    name: shared-data
-    target: /shared-data
-    type: host
+    - host:
+        source: /shared-data
+      name: shared-data
+      target: /shared-data
+      type: text

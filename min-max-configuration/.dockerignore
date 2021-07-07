@@ -27,5 +27,5 @@ venv/
 
 # retain ignore files
 !.*ignore
-!build/datamodel/
-!build/bundle/
+!build/datatype/
+!build/app.yaml

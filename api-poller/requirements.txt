@@ -1,4 +1,4 @@
 # This is where required Python libraries are listed
-kelvin-app[data]
+kelvin-app[data]>=6.0.0b1
 pytest
 requests

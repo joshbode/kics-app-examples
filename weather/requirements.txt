@@ -2,5 +2,5 @@
 # pandas
 # numpy
 # scikit-learn
-kelvin-app[data]
+kelvin-app[data]>=6.0.0b1
 pytest

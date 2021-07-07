@@ -1,105 +1,31 @@
 app:
   kelvin:
-    core:
-      #logging_level: DEBUG
-      data_models:
-        - name: raw.float32
-          version: 2.0.0
-        - name: raw.uint64
-          version: 2.0.0
-        - name: raw.int32
-          version: 2.0.0
-      interface:
-        client:
-          args: []
-          executable: run_app
-          period: 1.0
-          spawn: true
-        type: client
-      language:
-        python:
-          entry_point: hvac_system.hvac_system:App
-          requirements: requirements.txt
-        type: python
-      logging_level: INFO
-      runtime:
-        historize_inputs: false
-        historize_outputs: true
-        type: opcua
-      inputs:
-        - name: setpoint.temperature
-          data_model: raw.float32
-          values: []
-        - name: setpoint.humidity
-          data_model: raw.uint64
-          values: []
-        - name: setpoint.rpm
-          data_model: raw.int32
-          values: []
-      gatekeeper:
-        input_stage:
-          - type: min_max
-            min_max:
-              actions:
-                - src: setpoint.temperature
-                  field: value
-                  min: 10.0
-                  max: 50.0 
-                - src: setpoint.humidity
-                  field: value
-                  max: 25
-                - src: setpoint.rpm
-                  field: value
-                  min: 50
-            inputs:
-              - name: setpoint.temperature
-                data_model: raw.float32
-              - name: setpoint.humidity
-                data_model: raw.uint64
-              - name: setpoint.rpm
-                data_model: raw.int32
-            outputs:
-              - name: setpoint.temperature
-                data_model: raw.float32
-              - name: setpoint.humidity
-                data_model: raw.uint64
-              - name: setpoint.rpm
-                data_model: raw.int32
-      connections:
-        - name: publisher
-          type: opcua
-          opcua:
-            endpoint: 'opc.tcp://kcf-app-rando-publisher-python.app:48010'
-            registry_map:
-              inputs:
-                - historize: true
-                  upload: false
-                  access: RW
-                  name: setpoint.temperature
-                  node: ns=2;s=setpoint.temperature
-                  external_tag: ns=2;s=rando_publisher.raw.float32_example
-                - historize: true
-                  upload: false
-                  access: RW
-                  name: setpoint.humidity
-                  node: ns=2;s=setpoint.humidity
-                  external_tag: ns=2;s=rando_publisher.raw.uint64_example
-                - historize: true
-                  upload: false
-                  access: RW
-                  name: setpoint.rpm
-                  node: ns=2;s=setpoint.rpm
-                  external_tag: ns=2;s=rando_publisher.raw.int32_example
-              outputs: []
-      version: 4.0.0
-    images:
-      base: ''
-      builder: ''
-    system_packages: []
+    data_types: [ ]
+    inputs:
+      - data_type: raw.float32
+        name: setpoint.temperature
+        sources:
+          - asset_names: [ emulation ]
+            workload_names: [ ]
+      - data_type: raw.uint64
+        name: setpoint.humidity
+        sources:
+          - asset_names: [ emulation ]
+            workload_names: [ ]
+      - data_type: raw.int32
+        name: setpoint.rpm
+        sources:
+          - asset_names: [ emulation ]
+            workload_names: [ ]
+    language:
+      python:
+        entry_point: hvac_system.hvac_system:App
+        requirements: requirements.txt
+      type: python
   type: kelvin
 info:
   description: hvac-system
   name: hvac-system
   title: hvac-system
   version: 1.0.0
-spec_version: 1.0.0
+spec_version: 2.0.0
