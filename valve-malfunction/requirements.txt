@@ -1,2 +1,2 @@
-kelvin-app[data]>=6.0.0b1
+kelvin-app[data]>=6.0.0
 pytest
