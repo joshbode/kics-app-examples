@@ -1,0 +1,32 @@
+app:
+  kelvin:
+    inputs:
+      - data_type: raw.float32
+        name: tempesrature
+        sources:
+          - asset_names: [ emulation ]
+    configuration:
+      min_threshold: 10
+      max_threshold: 100
+      rejection_messages:
+        - "The values are not correct"
+        - "Please provide and adequate value"
+        - "The provided value does not comply with the thresholds"
+      success_message: "The received value was accepted!"
+    language:
+      python:
+        entry_point: min_max_configuration.min_max_configuration:App
+        requirements: requirements.txt
+      type: python
+  type: kelvin
+info:
+  description: min-max-configuration
+  name: min-max-configuration
+  title: min-max-configuration
+  version: 1.0.0
+spec_version: 2.0.0
+
+
+
+
+

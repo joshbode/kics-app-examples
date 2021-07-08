@@ -1,6 +1,0 @@
-# This is where required Python libraries are listed
-# pandas
-# numpy
-# scikit-learn
-kelvin-app[data]
-pytest

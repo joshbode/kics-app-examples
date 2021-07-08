@@ -1,9 +1,0 @@
-# This is where required Python libraries are listed
-# pandas
-# numpy
-# scikit-learn
-# ## Kelvin Platform compatible builds
-# tensorflow==2.1.0+kelvin
-# protobuf==3.8.0+kelvin
-kelvin-app[data]
-pytest

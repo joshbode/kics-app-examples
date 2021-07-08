@@ -1,0 +1,23 @@
+app:
+  docker:
+    args: []
+    context: .
+    dockerfile: Dockerfile
+  type: docker
+info:
+  description: kelvin-influxdb-tutorial
+  name: kelvin-influxdb-tutorial
+  title: kelvin-influxdb-tutorial
+  version: 1.0.0
+spec_version: 2.0.0
+system:
+  ports:
+    - name: http
+      type: host
+      host:
+        port: 8086
+  privileged: false
+  volumes:
+    - name: data
+      target: /var/lib/influxdb
+      type: persistent

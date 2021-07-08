@@ -1,0 +1,52 @@
+app:
+  kelvin:
+    inputs:
+      - data_type: raw.float32
+        name: temperature_in_celsius
+        sources:
+          - asset_names: [emulation]
+            workload_names: [producer]
+      - data_type: raw.int32
+        name: temperature_in_celsius_int
+        sources:
+          - asset_names: [emulation]
+            workload_names: [producer]
+      - data_type: raw.float32
+        name: measure_in_cm
+        sources:
+          - asset_names: [emulation]
+            workload_names: [producer]
+      - data_type: raw.int32
+        name: measure_in_cm_int
+        sources:
+          - asset_names: [emulation]
+            workload_names: [producer]
+    language:
+      python:
+        entry_point: consumer.consumer:App
+        requirements: requirements.txt
+      type: python
+    outputs:
+      - data_type: raw.float32
+        name: temperature_in_fahrenheit
+        targets:
+          - asset_names: [emulation]
+      - data_type: raw.int32
+        name: temperature_in_fahrenheit_int
+        targets:
+          - asset_names: [emulation]
+      - data_type: raw.float32
+        name: measure_in_inches
+        targets:
+          - asset_names: [emulation]
+      - data_type: raw.int32
+        name: measure_in_inches_int
+        targets:
+          - asset_names: [emulation]
+  type: kelvin
+info:
+  description: Data Consumer
+  name: consumer
+  title: Data Consumer
+  version: 1.0.1
+spec_version: 2.0.0

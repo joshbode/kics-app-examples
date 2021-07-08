@@ -1,0 +1,32 @@
+app:
+  kelvin:
+    inputs:
+      - data_type: raw.float32
+        name: temperature
+        sources:
+          - asset_names: [ emulation ]
+      - data_type: raw.float32
+        name: humidity
+        sources:
+          - asset_names: [ emulation ]
+    language:
+      python:
+        entry_point: weather.weather:App
+        requirements: requirements.txt
+      type: python
+    outputs:
+      - data_type: raw.float32
+        name: temperature_mean
+        targets:
+          - asset_names: [ emulation ]
+      - data_type: raw.float32
+        name: humidity_mean
+        targets:
+          - asset_names: [ emulation ]
+  type: kelvin
+info:
+  description: weather
+  name: weather
+  title: weather
+  version: 1.0.0
+spec_version: 2.0.0

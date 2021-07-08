@@ -1,0 +1,22 @@
+app:
+  kelvin:
+    language:
+      python:
+        entry_point: kelvin_client_integration:App
+        requirements: requirements.txt
+      type: python
+  type: kelvin
+info:
+  description: kelvin-client-integration
+  name: kelvin-client-integration
+  title: kelvin-client-integration
+  version: 1.0.0
+system:
+  environment_vars:
+    - name: KELVIN_URL
+      value: "beta"
+    - name: KELVIN_USERNAME
+      value: "first.last"
+    - name: KELVIN_PASSWORD
+      value: "your_password"
+spec_version: 2.0.0

@@ -1,0 +1,25 @@
+app:
+  kelvin:
+    language:
+      python:
+        entry_point: api_poller.api_poller:App
+        requirements: requirements.txt
+      type: python
+    outputs:
+      - data_type: raw.float32
+        name: avg_temp
+        targets:
+          - asset_names: [ emulation ]
+      - data_type: raw.float32
+        name: temp_f
+        targets:
+          - asset_names: [ emulation ]
+  type: kelvin
+info:
+  description: api-poller
+  name: api-poller
+  title: api-poller
+  version: 1.0.0
+spec_version: 2.0.0
+system:
+  privileged: false
