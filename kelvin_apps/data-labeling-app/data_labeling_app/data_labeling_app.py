@@ -7,7 +7,7 @@ from typing import Any
 from datetime import datetime
 from kelvin.app import DataApplication
 from kelvin.sdk.client import Client
-from kelvin.sdk.client.model import Type
+from kelvin.sdk.client.model.requests import Type
 from kelvin.sdk.client.model.requests import DataLabelCreate, DataLabelSource, Metric
 
 
@@ -102,7 +102,11 @@ class App(DataApplication):
         """Process data."""
 
         #Get input value
-        input_metric = self.data.input_metric.value
+        input_metric = self.data.input_metric.value if self.data.get("input_metric", None) else None
+
+        if not input_metric:
+            print("Metric Value does not exist")
+            return
 
         #Evaluate if a datalabel will be emitted 
         if input_metric >= self.threshold:
