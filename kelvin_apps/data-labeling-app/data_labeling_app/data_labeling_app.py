@@ -102,7 +102,11 @@ class App(DataApplication):
         """Process data."""
 
         #Get input value
-        input_metric = self.data.input_metric.value
+        input_metric = self.data.input_metric.value if self.data.get("input_metric", None) else None
+
+        if not input_metric:
+            print("Metric Value does not exist")
+            return
 
         #Evaluate if a datalabel will be emitted 
         if input_metric >= self.threshold:
