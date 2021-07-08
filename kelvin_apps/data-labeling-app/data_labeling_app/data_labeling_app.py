@@ -7,7 +7,7 @@ from typing import Any
 from datetime import datetime
 from kelvin.app import DataApplication
 from kelvin.sdk.client import Client
-from kelvin.sdk.client.model import Type
+from kelvin.sdk.client.model.requests import Type
 from kelvin.sdk.client.model.requests import DataLabelCreate, DataLabelSource, Metric
 
 

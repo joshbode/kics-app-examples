@@ -1,71 +1,41 @@
 app:
   kelvin:
-    core:
-      data_models:
-        - name: raw.float32
-          version: 2.0.0
-      interface:
-        client:
-          args: []
-          executable: run_app
-          period: 10.0
-          spawn: true
-        type: client
-      language:
-        python:
-          entry_point: data_labeling_app.data_labeling_app:App
-          requirements: requirements.txt
-        type: python
-      logging_level: INFO
-      runtime:
-        historize_inputs: false
-        historize_outputs: true
-        type: opcua
-      version: 4.0.0
-      connections:
-        - name: input-connection
-          type: opcua
-          opcua:
-            endpoint: opc.tcp://esp-modbus.app:48010
-            registry_map:
-              parameters: []
-              inputs:
-                - name: input_metric
-                  node: ns=2;s=pump_intake_temperature
-                  access: RO
-              outputs: []
-      inputs:
-        - name: input_metric
-          data_model: raw.float32
-      outputs: []
-    images:
-      base: ''
-      builder: ''
-    system_packages: []
+    data_types: []
+    inputs:
+      - data_type: raw.float32
+        name: input_metric
+        sources:
+          - asset_names: [ emulation ]
+    language:
+      python:
+        entry_point: data_labeling_app.data_labeling_app:App
+        requirements: requirements.txt
+      type: python
   type: kelvin
-system:
-  environment_vars:
-    - name: ACP_NAME
-      value: "squad4-acp1"
-    - name: METRIC_SOURCE
-      value: "rpa-driver-downstream-data"
-    - name: METRIC_KEY
-      value: "ns=2;s=pump_intake_temperature"
-    - name: METRIC_TYPE
-      value: "raw.float32"
-    - name: LABEL_NAME
-      value: "metric-above-threshold"
-    - name: METRIC_THRESHOLD
-      value: "10"
-    - name: URL
-      value: "https://demo.kelvininc.com"
-    - name: DLSUSER
-      value: <% secrets.jumpsuser %>
-    - name: DLPASSWORD
-      value: <% secrets.jumpspassword %>
 info:
   description: Create a data label based on certain criteria
   name: data-labeling-app
   title: data-labeling-app
   version: 1.0.0
-spec_version: 1.1.0
+spec_version: 2.0.0
+system:
+  environment_vars:
+    - name: ACP_NAME
+      value: squad4-acp1
+    - name: METRIC_SOURCE
+      value: rpa-driver-downstream-data
+    - name: METRIC_KEY
+      value: ns=2;s=pump_intake_temperature
+    - name: METRIC_TYPE
+      value: raw.float32
+    - name: LABEL_NAME
+      value: metric-above-threshold
+    - name: METRIC_THRESHOLD
+      value: '10'
+    - name: URL
+      value: https://demo.kelvininc.com
+    - name: DLSUSER
+      value: <% secrets.jumpsuser %>
+    - name: DLPASSWORD
+      value: <% secrets.jumpspassword %>
+  privileged: false
