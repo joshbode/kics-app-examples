@@ -2,14 +2,14 @@ app:
   kelvin:
     language:
       python:
-        entry_point: shared_file_reader.shared_file_reader:App
+        entry_point: shared_file_writer.shared_file_writer:App
         requirements: requirements.txt
       type: python
   type: kelvin
 info:
-  description: shared-file-reader
-  name: shared-file-reader
-  title: shared-file-reader
+  description: shared-file-writer
+  name: shared-file-writer
+  title: shared-file-writer
   version: 2.0.0
 spec_version: 2.0.0
 system:
@@ -21,5 +21,5 @@ system:
     - host:
         source: /acp-shared-data
       name: shared-data
-      target: /opt/kelvin/app/shared
+      target: /opt/kelvin/app/data
       type: text

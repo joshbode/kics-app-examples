@@ -2,15 +2,15 @@
 Data Application.
 """
 
+from typing import Sequence
+
 from kelvin.app import DataApplication
 from kelvin.icd import Message
 from kelvin.message.raw import Float32
 from kelvin.message.raw import Int32
-from typing import Sequence
 
 
 class App(DataApplication):
-
 
     def init(self) -> None:
         # To access the declared inputs
@@ -22,7 +22,6 @@ class App(DataApplication):
         # To access the complete app configuration i.e. app.yaml
         print('\nComplete app configuration: ' + str(self.app_configuration))
         print('\nData: ' + str(self.data))
-
 
     def process_data(self, data: Sequence[Message]) -> None:
         # Process input messages

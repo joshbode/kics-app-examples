@@ -10,7 +10,7 @@ info:
   description: shared-file-reader
   name: shared-file-reader
   title: shared-file-reader
-  version: 1.0.0
+  version: 2.0.0
 spec_version: 2.0.0
 system:
   privileged: false
@@ -19,7 +19,7 @@ system:
     memory: 256Mi
   volumes:
     - host:
-        source: /shared-data
+        source: /acp-shared-data
       name: shared-data
-      target: /shared-data
+      target: /opt/kelvin/app/data
       type: text
