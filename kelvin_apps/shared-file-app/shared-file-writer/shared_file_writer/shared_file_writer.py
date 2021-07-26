@@ -2,12 +2,21 @@
 Data Application.
 """
 
-from kelvin.app import DataApplication
 import random
+
+from kelvin.app import DataApplication
+from typing.io import TextIO
 
 
 class App(DataApplication):
     """Application."""
+
+    file: TextIO
+
+    def init(self) -> None:
+        mode = "w+"
+        buffering = 1
+        self.file = open(self.config.file_name, mode=mode, buffering=buffering)
 
     def process(self) -> None:
         """Process data."""
@@ -16,10 +25,6 @@ class App(DataApplication):
         value = random.randint(0, 5000)
         print(f"Writing to shared file the following value: {value}")
         try:
-            # Append the random value to the shared file
-            with open("shared/buffer_file.log", "w") as resultFile:
-                resultFile.write(f"{value}\n")
-        except:
-            pass
-
-
+            self.file.write(f"{value}\n")
+        except Exception as exc:
+            print(f"Error writing to file: {exc}")
