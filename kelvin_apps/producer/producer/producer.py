@@ -8,6 +8,7 @@ from kelvin.app import DataApplication
 
 
 class App(DataApplication):
+
     enabled: bool = False
     min_value: int = 0
     max_value: int = 1000
@@ -32,7 +33,9 @@ class App(DataApplication):
             self.logger.info("Data Generation is disabled.")
 
     def process(self) -> None:
-        """Process data."""
+        """
+        Process data
+        """
         # Get app configurations
         if self.enabled:
             for metric in self.interface.outputs:
