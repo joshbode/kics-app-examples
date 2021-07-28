@@ -23,8 +23,8 @@ class App(DataApplication):
 
         # Generate a random value
         value = random.randint(0, 5000)
-        print(f"Writing to shared file the following value: {value}")
+        self.logger.info("Writing to shared file the following value", value=value)
         try:
             self.file.write(f"{value}\n")
         except Exception as exc:
-            print(f"Error writing to file: {exc}")
+            self.logger.error(f"Error writing to file", exc=exc)

@@ -1,6 +1,7 @@
 """
 Data Application.
 """
+from functools import reduce
 
 from kelvin.app import DataApplication
 from typing.io import TextIO
@@ -19,7 +20,8 @@ class App(DataApplication):
     def process(self) -> None:
         """Process data."""
         try:
-            last_line = str(list(self.file)[-1]).replace('\n', ''.replace('\r', ''))
-            print(f"The last line read from the shared file: {last_line}")
+            last_line = reduce(lambda _, x: x, self.file, None)
+            if last_line is not None:
+                self.logger.info("The last line read from the shared file", last_line=last_line)
         except Exception as exc:
-            print(f"Error reading from file: {exc}")
+            self.logger.error(f"Error reading from file", exc=exc)
