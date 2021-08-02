@@ -20,6 +20,7 @@ class App(DataApplication):
         # and access them with the following:
         username = os.getenv("KELVIN_USERNAME", "fail_user")
         password = os.getenv("KELVIN_PASSWORD", "fail_password")
+        # Remove these logs from your code
         self.logger.debug("Username", username=username)
         self.logger.debug("Password", password=password)
         self.client.login(password=password)

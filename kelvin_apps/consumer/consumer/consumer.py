@@ -26,11 +26,11 @@ class App(DataApplication):
             temperature_in_celsius = self.data.get("temperature_in_celsius", None)
             if temperature_in_celsius:
                 temperature_in_fahrenheit = (temperature_in_celsius.value * 9 / 5) + 32
-                if isinstance(temperature_in_celsius._.type, Float32):
+                if isinstance(temperature_in_celsius, Float32):
                     name = "temperature_in_fahrenheit"
                     value = round(temperature_in_fahrenheit, 2)
                     self.make_message("raw.float32", name, value, emit=True)
-                elif isinstance(temperature_in_celsius._.type, Int32):
+                elif isinstance(temperature_in_celsius, Int32):
                     name = "temperature_in_fahrenheit_int"
                     value = int(temperature_in_fahrenheit)
                     self.make_message("raw.int32", name, value, emit=True)
@@ -38,11 +38,11 @@ class App(DataApplication):
             measure_in_cm = self.data.get("measure_in_cm", None)
             if measure_in_cm:
                 measure_in_inches = measure_in_cm.value / 2.54
-                if isinstance(measure_in_cm._.type, Float32):
+                if isinstance(measure_in_cm, Float32):
                     name = "measure_in_inches"
                     value = round(measure_in_inches, 2)
                     self.make_message("raw.float32", name, value, emit=True)
-                elif isinstance(measure_in_cm._.type, Int32):
+                elif isinstance(measure_in_cm, Int32):
                     name = "measure_in_inches_int"
                     value = int(measure_in_inches)
                     self.make_message("raw.int32", name, value, emit=True)
