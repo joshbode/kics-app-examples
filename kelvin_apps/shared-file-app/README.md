@@ -8,9 +8,7 @@ in the **emulation system**, using a **shared volume**
 
 1 - Applications built using the **kelvin** tool will be hosted, inside the container, under **/opt/kelvin/app**.
 
-2 - In the emulation system, volumes are not shared through the **app.yaml** but resorting to the **--shared-dir** option in the **kelvin emulation start** command.
-
-3 - When the **--shared-dir** option is specified, a link between the provided path and **/opt/kelvin/app/shared/** will be established. All data output to **/opt/kelvin/app/shared** will be available on the provided directory.
+2 - In the emulation system, volumes defined in the **app.yaml** are exposed similarly to the node deployment.
 
 ## Structure
 ![Structure](diagram.png)
@@ -20,10 +18,10 @@ in the **emulation system**, using a **shared volume**
 This is a simple example that shows two different workloads sharing the same host path/file.
 
 `shared-file-writer` Writes a random integer value in each second to the shared file.   
-(Writing to **shared/buffer_log.log**, i.e, **/opt/kelvin/app/shared/buffer_log.log**)
+(Writing to **/tmp/data/buffer_log.log**, i.e, **/opt/kelvin/app/data/buffer_log.log**)
 
 `shared-file-reader` project reads the shared file for each second and prints the last line.  
-(Reading from **shared/buffer_log.log**, i.e, **/opt/kelvin/app/shared/buffer_log.log**)
+(Reading from **/tmp/data/buffer_log.log**, i.e, **/opt/kelvin/app/data/buffer_log.log**)
 
 **Note: The shared file lives in the host environment.**
 
@@ -39,40 +37,36 @@ directory:
   created)
     * 2.1 Confirm both applications are built and ready to be emulated. `kelvin app images list` should yield
       both `shared-file-writer` and `shared-file-reader` under `Existing Apps`
-    * 2.2 `kelvin emulation start shared-file-writer:1.0.0 --shared-dir=/path/to/shared_directory`
+    * 2.2 `kelvin emulation start shared-file-writer:1.0.0`
         ```
-        ➜ kelvin emulation start shared-file-writer:1.0.0 --shared-dir=shared_volume_example  --show-logs                                                                                                                                                         
+        ➜ kelvin emulation start shared-file-writer:1.0.0 --app-config=app.yaml --show-logs                                                                                                                                                         
         [kelvin.sdk][2021-03-08 11:00:20][I] Initializing the emulation system.                                                                                                                                                                                   
         [kelvin.sdk][2021-03-08 11:00:20][I] Emulation system is running.                                                                                                                                                                                         
         [kelvin.sdk][2021-03-08 11:00:20][I] Loading configuration and starting the application                                                                                                                                                                   
         [kelvin.sdk][2021-03-08 11:00:20][I] Starting application "shared-file-writer:1.0.0"                                                                                                                                                                      
-        [kelvin.sdk][2021-03-08 11:00:20][R]                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                  
-                    Shared volume established.                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                  
-                    The following will be linked (host -> container): "/path/to/shared_directory" <-> "/opt/kelvin/app/shared"                                                           
-                                                                                                                                                                                                                                                                  
-                    All data output to "/opt/kelvin/app/shared" will be available in "/path/to/shared_directory".                                                                        
-                                                                                                                                                                                                                                                                  
+        [kelvin.sdk][2021-03-08 11:00:20][R]                                                                                                                                                                                                                          
+            Emulation configurations applied to container:                                                                                                                                                                                                                                   
+                └── Volumes:                                                                                                                                                                                                                                                                 
+                   - "/opt/kelvin/app/data" connected to "/tmp/data" (container -> host)                                                                                                                                                                                                     
+                └── Memory:                                                                                                                                                                                                                                                                  
+                   - Container memory restricted to a maximum of "256M"                                                                                                                                                                                                                                   
         [kelvin.sdk][2021-03-08 11:00:20][I] Stopping containers of "shared-file-writer:1.0.0"                                                                                                                                                                    
         [kelvin.sdk][2021-03-08 11:00:31][I] Containers of "shared-file-writer:1.0.0" successfully stopped             
         [kelvin.sdk][2021-03-08 11:02:13][R] Applications successfully launched: "shared-file-writer:1.0.0"   
         ```      
-    * 2.3 `kelvin emulation start shared-file-reader:1.0.0 --shared-dir=/path/to/shared_directory`
+    * 2.3 `kelvin emulation start shared-file-reader:1.0.0`
         ```
-         ➜ kelvin emulation start shared-file-reader:1.0.0 --shared-dir=shared_volume_example  --show-logs                                                                                                                                                                                                                       
+         ➜ kelvin emulation start shared-file-reader:1.0.0 --app-config=app.yaml --show-logs                                                                                                                                                                                                                                
         [kelvin.sdk][2021-03-08 11:02:13][I] Initializing the emulation system.                                                                                                                                                                                                                                                 
         [kelvin.sdk][2021-03-08 11:02:13][I] Emulation system is running.                                                                                                                                                                                                                                                       
         [kelvin.sdk][2021-03-08 11:02:13][I] Loading configuration and starting the application                                                                                                                                                                                                                                 
-        [kelvin.sdk][2021-03-08 11:02:13][I] Starting application "shared-file-reader:1.0.0"                                                                                                                                                                                                                                    
-        [kelvin.sdk][2021-03-08 11:02:13][R]                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                
-                    Shared volume established.                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                                
-                    The following will be linked (host -> container): "/path/to/shared_directory" <-> "/opt/kelvin/app/shared"                                                                                                                         
-                                                                                                                                                                                                                                                                                                                                
-                    All data output to "/opt/kelvin/app/shared" will be available in "/path/to/shared_directory".                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                
+        [kelvin.sdk][2021-03-08 11:02:13][I] Starting application "shared-file-reader:1.0.0"                                                                                                                                       
+        [kelvin.sdk][2021-03-08 19:23:49][R]                                                                                                                                                                                                                                                 
+            Emulation configurations applied to container:                                                                                                                                                                                                                                   
+                └── Volumes:                                                                                                                                                                                                                                                                 
+                   - "/opt/kelvin/app/data" connected to "/tmp/data" (container -> host)                                                                                                                                                                                                     
+                └── Memory:                                                                                                                                                                                                                                                                  
+                   - Container memory restricted to a maximum of "256M"                                                                                                                                                                                                                                                                                                    
         [kelvin.sdk][2021-03-08 11:02:13][I] Stopping containers of "shared-file-reader:1.0.0"                                                                                                                                                                                                                                  
         [kelvin.sdk][2021-03-08 11:02:13][I] Containers of "shared-file-reader:1.0.0" successfully stopped              
         [kelvin.sdk][2021-03-08 11:02:13][R] Applications successfully launched: "shared-file-reader:1.0.0"              
