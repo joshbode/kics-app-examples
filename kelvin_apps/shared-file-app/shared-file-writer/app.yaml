@@ -1,5 +1,7 @@
 app:
   kelvin:
+    configuration:
+      file_name: "data/buffer_file.log"
     language:
       python:
         entry_point: shared_file_writer.shared_file_writer:App
@@ -10,7 +12,7 @@ info:
   description: shared-file-writer
   name: shared-file-writer
   title: shared-file-writer
-  version: 1.0.0
+  version: 2.0.0
 spec_version: 2.0.0
 system:
   privileged: false
@@ -19,7 +21,7 @@ system:
     memory: 256Mi
   volumes:
     - host:
-        source: /shared-data
+        source: /tmp/data/
       name: shared-data
-      target: /shared-data
-      type: text
+      target: /opt/kelvin/app/data
+      type: host

@@ -1,5 +1,7 @@
 app:
   kelvin:
+    configuration:
+      file_name: "data/buffer_file.log"
     language:
       python:
         entry_point: shared_file_reader.shared_file_reader:App
@@ -19,7 +21,7 @@ system:
     memory: 256Mi
   volumes:
     - host:
-        source: /acp-shared-data
+        source: /tmp/data/
       name: shared-data
-      target: /opt/kelvin/app/shared
-      type: text
+      target: /opt/kelvin/app/data
+      type: host
