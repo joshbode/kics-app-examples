@@ -22,9 +22,10 @@ The code under `trainer.py` will be executed and a new `trianed_model.h5` file w
 
 # 2 - Vehicle Image Publisher #
 
-The second application, the `vehicle-image-publisher`, will be tasked with publishing use-case images.
-Images inside `vehicle-image-publisher/data` will be randomly selected and published to the broker.
-Code under `vehicle_image_publisher/vehicle_image_publisher.py` will be responsible for handling the data.
+The second application, the `vehicle-image-publisher`, will be tasked with publishing use-case images.  
+Images inside `vehicle-image-publisher/data` will be randomly selected and published to the broker.  
+Code under `vehicle_image_publisher/vehicle_image_publisher.py` will be responsible for handling the data.  
+
 Inside the `app.yaml`, it is important to note the output configuration channels where data will be published:
 ```
     outputs:
@@ -42,7 +43,8 @@ Inside the `app.yaml`, it is important to note the output configuration channels
 # 3 - Vehicle Image Detector #
 
 The third and last application, the `vehicle-image-detector`, will be fed images and will have to 'guess' its content.
-Code under `vehicle_image_detector/vehicle_image_detector.py` will be responsible for handling the data.
+Code under `vehicle_image_detector/vehicle_image_detector.py` will be responsible for handling the data.  
+
 Inside the `app.yaml`, it is important to note the input configuration channels from where data will be consumed:
 ```
     inputs:
