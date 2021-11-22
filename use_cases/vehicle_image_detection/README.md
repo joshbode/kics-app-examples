@@ -13,7 +13,7 @@ This example illustrates a simple image detection application and how it can be 
 
 Start off by building the trained model using the `vehicle-model-trainer`.  
 The build process will point to the `app.yaml` file. In this file, a system volume has been defined to output the contents of trained model into the host machine.  
-The dockerfile The code under `trainer.py` will be executed and a new `trianed_model.h5` file will be generated
+The code under `trainer.py` will be executed and a new `trianed_model.h5` file will be generated
 
 1. Under `vehicle-model-trainer/` run `kelvin app build --verbose`
 2. Copy the generated `trained_model/model_saved.h5` file to a safe directory for later usage.
