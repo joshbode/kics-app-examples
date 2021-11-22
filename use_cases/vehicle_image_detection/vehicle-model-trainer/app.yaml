@@ -1,0 +1,19 @@
+app:
+  docker:
+    args: []
+    context: .
+    dockerfile: Dockerfile
+  type: docker
+info:
+  description: vehicle-model-trainer
+  name: vehicle-model-trainer
+  title: vehicle-model-trainer
+  version: 1.0.0
+spec_version: 3.0.0
+system:
+  volumes:
+    - name: model-output
+      target: /opt/kelvin/app/trained_model # <<container path>>
+      type: host
+      host:
+        source: trained_model/ # <<host machine path>>

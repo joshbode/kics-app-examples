@@ -1,0 +1,20 @@
+app:
+  kelvin:
+    language:
+      python:
+        entry_point: vehicle_image_publisher:App
+        requirements: requirements.txt
+      type: python
+    outputs:
+      - name: vehicle_image
+        data_type: object
+        targets:
+          - workload_names: [ "vehicle-image-publisher" ]
+            asset_names: [ "emulation" ]
+  type: kelvin
+info:
+  description: vehicle-image-publisher
+  name: vehicle-image-publisher
+  title: vehicle-image-publisher
+  version: 1.0.0
+spec_version: 3.0.0
