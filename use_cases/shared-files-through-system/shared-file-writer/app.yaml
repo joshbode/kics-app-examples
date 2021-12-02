@@ -16,7 +16,7 @@ system:
   volumes:
     - host:
         # Make sure both 'reader' and 'writer' point to the same directory
-        source: /path/to/directory/to/wrote/into
+        source: /path/to/directory/to/write/into
       name: shared-data
       target: /opt/kelvin/app/data
       type: host

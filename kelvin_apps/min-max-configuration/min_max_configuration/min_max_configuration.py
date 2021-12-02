@@ -11,6 +11,6 @@ class App(DataApplication):
         min_threshold = self.config.min_threshold
         max_threshold = self.config.max_threshold
         if temperature and min_threshold <= temperature <= max_threshold:
-            print(self.config.success_message)
+            self.logger.info("Success message: ", message=self.config.success_message)
         else:
-            print(random.choice(self.config.rejection_messages))
+            self.logger.warning("Rejection message: ", message=random.choice(self.config.rejection_messages))

@@ -2,6 +2,3 @@
 # pandas
 # numpy
 # scikit-learn
-pytest
-kelvin-app
-kelvin-sdk-client

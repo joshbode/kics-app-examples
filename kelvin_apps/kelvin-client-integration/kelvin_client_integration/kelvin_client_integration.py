@@ -13,47 +13,28 @@ class App(DataApplication):
         """
         Initialization method
         """
-        # 1 - To access the complete application configuration file, i.e. the contents of the 'app.yaml':
-        # self.app_configuration
+        # IMPORTANT - There are two ways to access credentials:
 
-        # 2 - To access the inputs and outputs, respectively:
-        # self.interface.inputs
-        # and
-        # self.interface.outputs
-
-        self.logger.info("Initialising")
-
-        # Access credentials
+        # 1 - Pass specific credentials as environment variables the @app.yaml
+        # @app.yaml -> system -> environment_vars
+        # and access them with the following:
         username = os.getenv("KELVIN_USERNAME", "fail_user")
         password = os.getenv("KELVIN_PASSWORD", "fail_password")
-        self.logger.info("Username", username=username)
-        self.logger.info("Password", password=password)
-        # Authenticate and retrieve data
+        # Remove these logs from your code
+        self.logger.debug("Username", username=username)
+        self.logger.debug("Password", password=password)
         self.client.login(password=password)
+
+        # OR
+
+        # 2 - kelvin-sdk will automatically provide your kelvin credentials into the container
+        # and automatically inject them in the Kelvin-sdk-client object.
+        # Simply invoke:
+        # self.client.login()
+
+        # Finally access your data
         acp_data = self.client.acp.list_acp()
         self.logger.info("ACP Data", acp_data=str(acp_data))
 
     def process(self) -> None:
         """Process data."""
-        # 1 - To access the input data:
-        # self.data
-
-        # 2 - Considering your data is defined in the inputs as 'my_var', you can access it with:
-        # my_var = self.data.my_var
-        # or
-        # my_var = self.data.get('my_var')
-
-        # 4 - Build a message to emit:
-        """
-        self.logger.info("Data", data=self.data)
-        message = self.make_message(
-            "raw.float32",
-            name="my_new_var",
-            value=1.0,
-            time_of_validity=int(1 * 1e9),
-            emit=False
-        )
-        """
-        # 5 - Emit the message
-        # self.emit(message)
-
