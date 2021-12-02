@@ -17,11 +17,9 @@ This repository contains a set of application examples for the KICS platform.
 * **API Poller** - A simple Kelvin Application showcasing API communication with python's requests library
 * **Producer** - A producer application that emits several temperatures and measure (float32) values.
 * **Consumer** - A consumer application that subscribes to the values emitted by the **producer** application.
-* **HVAC System** - An HVAC application that subscribes to data from the bus.
 * **Kelvin Client Integration** - A Kelvin App that showcases its integration with Kelvin-SDK-Client for tailored access to platform data.
 * **Min-Max Configuration** - An application that showcases custom threshold configuration (see 'app->kelvin-configuration' under **app.yaml**)
-* **Shared File Emulation** - An example on how to share files & volumes locally in the Emulation System (related to **Shared File Node**)
-* **Shared File Node** - An example on how to share files & volumes remotely on a Node/ACP (related to **Shared File Emulation**)
+* **Shared File Application** - An example on how to share files & volumes locally in the Emulation System
 * **Valve Malfunction** - An application that process gas flow data into a Valve Malfunction Model
 * **Weather** - An application that subscribes to temperature data with retention features and emits calculated values based on the inputs.
 

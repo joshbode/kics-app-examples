@@ -1,5 +1,9 @@
 app:
   kelvin:
+    configuration:
+      base_url: "http://api.openweathermap.org/data/2.5/weather"
+      appid: "<replace_with_app_id>"
+      query: "San Francisco"
     language:
       python:
         entry_point: api_poller.api_poller:App

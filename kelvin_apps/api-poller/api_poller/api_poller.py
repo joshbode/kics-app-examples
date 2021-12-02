@@ -9,10 +9,10 @@ class App(DataApplication):
         Call the openweathermap API and same the `temp_f` variable into our buffer
         """
 
-        base_url = "http://api.openweathermap.org/data/2.5/weather"
+        base_url = self.config.base_url
         params = {
-            "appid": "<replace_with_app_id>",
-            "q": "San Francisco"
+            "appid": self.config.appid,
+            "q": self.config.query
         }
 
         with requests.get(base_url, params=params) as response:
