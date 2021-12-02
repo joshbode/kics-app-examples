@@ -13,23 +13,23 @@ app:
       - data_type: raw.float32
         name: temperature_in_celsius
         targets:
-          - node_names: [ emulation ]
-            asset_names: [ asset0 ]
+          - asset_names: [ emulation ]
+            workload_names: [ producer ]
       - data_type: raw.int32
         name: temperature_in_celsius_int
         targets:
-          - node_names: [ emulation ]
-            asset_names: [ asset0 ]
+          - asset_names: [ emulation ]
+            workload_names: [ producer ]
       - data_type: raw.float32
         name: measure_in_cm
         targets:
-          - node_names: [ emulation ]
-            asset_names: [ asset0 ]
+          - asset_names: [ emulation ]
+            workload_names: [ producer ]
       - data_type: raw.int32
         name: measure_in_cm_int
         targets:
-          - node_names: [ emulation ]
-            asset_names: [ asset0 ]
+          - asset_names: [ emulation ]
+            workload_names: [ producer ]
     system_packages:
       - vim
   type: kelvin
@@ -38,4 +38,4 @@ info:
   name: producer
   title: Data Producer
   version: 1.2.1
-spec_version: 4.0.0
+spec_version: 3.0.0

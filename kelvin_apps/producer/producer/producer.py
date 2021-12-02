@@ -47,7 +47,7 @@ class App(DataApplication):
             metric.data_type,
             name=metric.name,
             value=round(value, 2),
-            _asset_name='asset0'
+            _asset_name='emulation'
         )
         self.logger.info("Published value: ", message=str(message))
         self.emit(message)
