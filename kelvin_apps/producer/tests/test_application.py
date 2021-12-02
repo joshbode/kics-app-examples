@@ -18,7 +18,7 @@ def app() -> App:
 
 
 def test_init(app: App) -> None:
-    """Test initialisation of application."""
+    """Test initialization of application."""
 
     assert isinstance(app, App)
 

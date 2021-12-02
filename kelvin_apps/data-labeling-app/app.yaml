@@ -17,7 +17,7 @@ info:
   name: data-labeling-app
   title: data-labeling-app
   version: 1.0.0
-spec_version: 2.0.0
+spec_version: 4.0.0
 system:
   environment_vars:
     - name: ACP_NAME
