@@ -1,0 +1,74 @@
+FROM gw000/keras
+WORKDIR /opt/kelvin/app
+COPY . /opt/kelvin/app
+RUN pip install -r requirements.txt
+ENTRYPOINT ["python"]
+CMD ["/opt/kelvin/app/trainer.py"]
+Step 1/9 : FROM gw000/keras
+
+---> 659a852a9418
+Step 2/9 : WORKDIR /opt/kelvin/app
+
+---> Using cache
+---> d83c7fe6f68b
+Step 3/9 : COPY . /opt/kelvin/app
+
+---> 76b9530412f0
+Step 4/9 : RUN pip install -r requirements.txt
+
+---> Running in cee9e52a2097
+Requirement already satisfied: keras in /usr/local/lib/python2.7/dist-packages (from -r requirements.txt (line 1))
+Requirement already satisfied: tensorflow in /usr/local/lib/python2.7/dist-packages (from -r requirements.txt (line 2))
+Collecting pillow (from -r requirements.txt (line 3))
+Downloading https://files.pythonhosted.org/packages/12/ad/61f8dfba88c4e56196bf6d056cdbba64dc9c5dfdfbc97d02e6472feed913/Pillow-6.2.2-cp27-cp27mu-manylinux1_x86_64.whl (2.1MB)
+Requirement already satisfied: scipy in /usr/lib/python2.7/dist-packages (from -r requirements.txt (line 4))
+Requirement already satisfied: numpy>=1.9.1 in /usr/local/lib/python2.7/dist-packages (from keras->-r requirements.txt (line 1))
+Requirement already satisfied: pyyaml in /usr/lib/python2.7/dist-packages (from keras->-r requirements.txt (line 1))
+Requirement already satisfied: six>=1.9.0 in /usr/lib/python2.7/dist-packages (from keras->-r requirements.txt (line 1))
+Requirement already satisfied: mock>=2.0.0 in /usr/local/lib/python2.7/dist-packages (from tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: enum34>=1.1.6 in /usr/local/lib/python2.7/dist-packages (from tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: tensorflow-tensorboard<1.6.0,>=1.5.0 in /usr/local/lib/python2.7/dist-packages (from tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: backports.weakref>=1.0rc1 in /usr/local/lib/python2.7/dist-packages (from tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: absl-py>=0.1.6 in /usr/local/lib/python2.7/dist-packages (from tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: wheel in /usr/lib/python2.7/dist-packages (from tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: protobuf>=3.4.0 in /usr/local/lib/python2.7/dist-packages (from tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: funcsigs>=1; python_version < "3.3" in /usr/local/lib/python2.7/dist-packages (from mock>=2.0.0->tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: pbr>=0.11 in /usr/local/lib/python2.7/dist-packages (from mock>=2.0.0->tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: bleach==1.5.0 in /usr/local/lib/python2.7/dist-packages (from tensorflow-tensorboard<1.6.0,>=1.5.0->tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: futures>=3.1.1; python_version < "3" in /usr/local/lib/python2.7/dist-packages (from tensorflow-tensorboard<1.6.0,>=1.5.0->tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: markdown>=2.6.8 in /usr/local/lib/python2.7/dist-packages (from tensorflow-tensorboard<1.6.0,>=1.5.0->tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: html5lib==0.9999999 in /usr/local/lib/python2.7/dist-packages (from tensorflow-tensorboard<1.6.0,>=1.5.0->tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: werkzeug>=0.11.10 in /usr/local/lib/python2.7/dist-packages (from tensorflow-tensorboard<1.6.0,>=1.5.0->tensorflow->-r requirements.txt (line 2))
+Requirement already satisfied: setuptools in /usr/lib/python2.7/dist-packages (from protobuf>=3.4.0->tensorflow->-r requirements.txt (line 2))
+Installing collected packages: pillow
+Successfully installed pillow-6.2.2
+Removing intermediate container cee9e52a2097
+---> b76962eed61c
+Step 5/9 : ENTRYPOINT ["python"]
+
+---> Running in 70f154beabe7
+Removing intermediate container 70f154beabe7
+---> 723abb87135e
+Step 6/9 : CMD ["/opt/kelvin/app/trainer.py"]
+
+---> Running in 69983aa6e215
+Removing intermediate container 69983aa6e215
+---> cb1de8f15a47
+Step 7/9 : LABEL name=vehicle-model-trainer:1.0.0
+
+---> Running in ffd0325f2c42
+Removing intermediate container ffd0325f2c42
+---> 5d416e22862a
+Step 8/9 : LABEL source=ksdk
+
+---> Running in bce300d29711
+Removing intermediate container bce300d29711
+---> e2e3c5621192
+Step 9/9 : LABEL type=docker
+
+---> Running in 4ec8bb8ea894
+Removing intermediate container 4ec8bb8ea894
+---> 4e971773479d
+
+Successfully built 4e971773479d
+Successfully tagged vehicle-model-trainer:1.0.0

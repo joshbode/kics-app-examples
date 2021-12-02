@@ -3,8 +3,8 @@ Data Application.
 """
 
 from kelvin.app import DataApplication
-from kelvin.message.raw import Float32
-from kelvin.message.raw import Int32
+from kelvin.sdk.datatype import Float32
+from kelvin.sdk.datatype import Int32
 
 
 class App(DataApplication):
@@ -29,11 +29,12 @@ class App(DataApplication):
                 if isinstance(temperature_in_celsius, Float32):
                     name = "temperature_in_fahrenheit"
                     value = round(temperature_in_fahrenheit, 2)
-                    self.make_message("raw.float32", name, value, emit=True)
+                    self.make_message("raw.float32", name, value=value, emit=True)
                 elif isinstance(temperature_in_celsius, Int32):
                     name = "temperature_in_fahrenheit_int"
                     value = int(temperature_in_fahrenheit)
-                    self.make_message("raw.int32", name, value, emit=True)
+                    self.make_message("raw.int32", name, value=value, emit=True)
+                    self.logger.info("Dispatching new values in fahrenheit...")
 
             measure_in_cm = self.data.get("measure_in_cm", None)
             if measure_in_cm:
@@ -41,11 +42,11 @@ class App(DataApplication):
                 if isinstance(measure_in_cm, Float32):
                     name = "measure_in_inches"
                     value = round(measure_in_inches, 2)
-                    self.make_message("raw.float32", name, value, emit=True)
+                    self.make_message("raw.float32", name, value=value, emit=True)
                 elif isinstance(measure_in_cm, Int32):
                     name = "measure_in_inches_int"
                     value = int(measure_in_inches)
-                    self.make_message("raw.int32", name, value, emit=True)
-            self.logger.info("Dispatching new values...")
+                    self.make_message("raw.int32", name, value=value, emit=True)
+                self.logger.info("Dispatching new values in inches...")
         except Exception as exc:
             self.logger.error("Error processing value: ", error=exc)

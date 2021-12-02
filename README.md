@@ -23,6 +23,9 @@ This repository contains a set of application examples for the KICS platform.
 * **Valve Malfunction** - An application that process gas flow data into a Valve Malfunction Model
 * **Weather** - An application that subscribes to temperature data with retention features and emits calculated values based on the inputs.
 
+### **Use Cases** ### 
+
+* **Vehicle Image Detection** - A trio of applications (2 Kelvin Applications, 1 Generic Application) showcasing a simple image recognition scenario.
 
 
 Additional documentation can be found on: [docs.kelvininc.com](https://docs.kelvininc.com)

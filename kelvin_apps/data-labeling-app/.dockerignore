@@ -24,6 +24,7 @@ docs/_build/
 htmlcov/
 pip-wheel-metadata/
 venv/
+*.whl
 
 # retain ignore files
 !.*ignore

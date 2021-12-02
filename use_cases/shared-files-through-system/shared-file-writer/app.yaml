@@ -1,0 +1,22 @@
+app:
+  kelvin:
+    language:
+      python:
+        entry_point: shared_file_writer.shared_file_writer:App
+        requirements: requirements.txt
+      type: python
+  type: kelvin
+info:
+  description: shared-file-writer
+  name: shared-file-writer
+  title: shared-file-writer
+  version: 2.0.0
+spec_version: 4.0.0
+system:
+  volumes:
+    - host:
+        # Make sure both 'reader' and 'writer' point to the same directory
+        source: /path/to/directory/to/write/into
+      name: shared-data
+      target: /opt/kelvin/app/data
+      type: host

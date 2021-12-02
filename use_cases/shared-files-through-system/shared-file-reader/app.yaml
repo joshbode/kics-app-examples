@@ -1,0 +1,23 @@
+app:
+  kelvin:
+    language:
+      python:
+        entry_point: shared_file_reader.shared_file_reader:App
+        requirements: requirements.txt
+      type: python
+  type: kelvin
+info:
+  description: shared-file-reader
+  name: shared-file-reader
+  title: shared-file-reader
+  version: 2.0.0
+spec_version: 4.0.0
+system:
+  privileged: false
+  volumes:
+    - host:
+        # Make sure both 'reader' and 'writer' point to the same directory
+        source: /path/to/directory/to/read/from
+      name: shared-data
+      target: /opt/kelvin/app/data
+      type: host

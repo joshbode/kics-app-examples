@@ -9,7 +9,7 @@ info:
   name: kelvin-influxdb-tutorial
   title: kelvin-influxdb-tutorial
   version: 1.0.0
-spec_version: 2.0.0
+spec_version: 4.0.0
 system:
   ports:
     - name: http

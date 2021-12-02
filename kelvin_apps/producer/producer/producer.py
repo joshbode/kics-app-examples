@@ -8,7 +8,6 @@ from kelvin.app import DataApplication
 
 
 class App(DataApplication):
-
     enabled: bool = False
     min_value: int = 0
     max_value: int = 1000
@@ -47,7 +46,8 @@ class App(DataApplication):
         message = self.make_message(
             metric.data_type,
             name=metric.name,
-            value=round(value, 2)
+            value=round(value, 2),
+            _asset_name='emulation'
         )
         self.logger.info("Published value: ", message=str(message))
         self.emit(message)

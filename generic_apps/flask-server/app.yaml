@@ -9,4 +9,11 @@ info:
   name: flask-server
   title: flask-server
   version: 1.0.0
-spec_version: 2.0.0
+spec_version: 4.0.0
+system:
+  ports:
+    - name: http
+      type: host
+      host:
+        port: 5000
+  privileged: false

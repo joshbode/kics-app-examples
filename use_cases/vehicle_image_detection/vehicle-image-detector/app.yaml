@@ -1,0 +1,28 @@
+app:
+  kelvin:
+    language:
+      python:
+        entry_point: 'vehicle_image_detector:App'
+        requirements: requirements.txt
+      type: python
+    inputs:
+      - name: vehicle_image
+        data_type: object
+        sources:
+          - workload_names: [ vehicle-image-publisher ]
+            asset_names: [ emulation ]
+    logging_level: INFO
+  type: kelvin
+info:
+  description: vehicle-image-detector
+  name: vehicle-image-detector
+  title: vehicle-image-detector
+  version: 1.0.0
+spec_version: 4.0.0
+system:
+  volumes:
+    - name: image-output
+      target: /opt/kelvin/app/images
+      type: host
+      host:
+        source: images/

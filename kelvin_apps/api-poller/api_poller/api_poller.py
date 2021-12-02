@@ -38,12 +38,13 @@ class App(DataApplication):
             return
 
         # compute mean
-        mn = self.data['temp_f'].series().mean()
-        self.logger.info(f'mean temp_f:{mn}')
+        if self.temp_f:
+            mn = self.data.temp_f.series().mean()
+            self.logger.info(f'mean temp_f:{mn}')
 
-        # Create and emit message
-        msg = self.make_message("raw.float32", name='avg_temp', value=mn)
-        self.emit(msg)
+            # Create and emit message
+            msg = self.make_message("raw.float32", name='avg_temp', value=mn)
+            self.emit(msg)
 
     def process(self):
         """
