@@ -18,7 +18,7 @@ info:
   name: vehicle-image-detector
   title: vehicle-image-detector
   version: 1.0.0
-spec_version: 3.0.0
+spec_version: 4.0.0
 system:
   volumes:
     - name: image-output

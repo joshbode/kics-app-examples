@@ -4,7 +4,7 @@ import random
 from pathlib import Path
 from typing import List
 
-from kelvin.app import DataApplication
+from kelvin.sdk.app import DataApplication
 
 
 class App(DataApplication):
