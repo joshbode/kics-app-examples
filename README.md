@@ -1,10 +1,8 @@
-# KICS App Examples
+# KSOS App Examples
 
-This repository contains a set of application examples for the KICS platform.
-
+This repository contains a set of application examples for the KSOS platform.
 
 # Example structure #
-
 
 ### **Generic Applications** ### 
 
@@ -19,13 +17,12 @@ This repository contains a set of application examples for the KICS platform.
 * **Consumer** - A consumer application that subscribes to the values emitted by the **producer** application.
 * **Kelvin Client Integration** - A Kelvin App that showcases its integration with Kelvin-SDK-Client for tailored access to platform data.
 * **Min-Max Configuration** - An application that showcases custom threshold configuration (see 'app->kelvin-configuration' under **app.yaml**)
-* **Shared File Application** - An example on how to share files & volumes locally in the Emulation System
 * **Valve Malfunction** - An application that process gas flow data into a Valve Malfunction Model
 * **Weather** - An application that subscribes to temperature data with retention features and emits calculated values based on the inputs.
 
 ### **Use Cases** ### 
 
 * **Vehicle Image Detection** - A trio of applications (2 Kelvin Applications, 1 Generic Application) showcasing a simple image recognition scenario.
-
+* **Shared File Application** - An example on how to share files & volumes locally in the Emulation System
 
 Additional documentation can be found on: [docs.kelvininc.com](https://docs.kelvininc.com)

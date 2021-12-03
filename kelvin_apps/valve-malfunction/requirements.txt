@@ -2,3 +2,9 @@
 # pandas
 # numpy
 # scikit-learn
+
+typing
+datetime
+pytest
+pandas
+numpy

@@ -4,7 +4,7 @@ Data Application Tests.
 
 import pytest
 
-from data_labeling_app import App
+from valve_malfunction import App
 
 
 @pytest.fixture
@@ -18,7 +18,7 @@ def app() -> App:
 
 
 def test_init(app: App) -> None:
-    """Test initialisation of application."""
+    """Test initialization of application."""
 
     assert isinstance(app, App)
 

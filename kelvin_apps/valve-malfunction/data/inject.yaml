@@ -1,0 +1,5 @@
+port: 48010
+name: valve-malfunction-data
+csv: full_valve_data.csv
+period_in_s: 1
+is_repeat: true
