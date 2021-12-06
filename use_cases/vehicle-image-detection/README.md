@@ -11,7 +11,7 @@ This example illustrates a simple image detection application and how it can be 
 
 # The structure
 
-### 1 - Vehicle Model Trainer #
+### 1. Vehicle Model Trainer #
 
 Start off by building the trained model using the `vehicle-model-trainer`.  
 The build process will point to the `app.yaml` file. In this file, a system volume has been defined to output the contents of trained model into the host machine.  
@@ -21,7 +21,7 @@ The code under `trainer.py` will be executed and a new `trained_model.h5` file w
 2. Copy the generated `trained_model/model_saved.h5` file to a safe directory for later usage.
 
 
-### 2 - Vehicle Image Publisher #
+### 2. Vehicle Image Publisher #
 
 The second application, the `vehicle-image-publisher`, will be tasked with publishing use-case images.  
 Images inside `vehicle-image-publisher/data` will be randomly selected and published to the broker.  
@@ -43,7 +43,7 @@ Inside the `app.yaml`, it is important to note the output configuration channels
 ![Producer](producer.png)
 
 
-### 3 - Vehicle Image Detector #
+### 3. Vehicle Image Detector #
 
 The third and last application, the `vehicle-image-detector`, will be fed images and will have to 'guess' its content.
 Code under `vehicle_image_detector/vehicle_image_detector.py` will be responsible for handling the data.  

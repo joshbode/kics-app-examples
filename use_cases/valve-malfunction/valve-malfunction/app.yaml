@@ -5,10 +5,12 @@ app:
         name: gas_flow
         sources:
           - asset_names: [ emulation ]
-      - data_type: raw.float32
+            workload_names: [ valve-malfunction-injector ]
+      - data_type: raw.int32
         name: valve_state
         sources:
           - asset_names: [ emulation ]
+            workload_names: [ valve-malfunction-injector ]
     outputs:
       - data_type: raw.float32
         name: valve_malfunction
