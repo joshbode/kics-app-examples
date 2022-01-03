@@ -1,0 +1,55 @@
+app:
+  kelvin:
+    inputs:
+      - data_type: raw.float32
+        name: gas_flow
+        sources:
+          - asset_names: [ emulation ]
+            workload_names: [ valve-malfunction-injector ]
+      - data_type: raw.int32
+        name: valve_state
+        sources:
+          - asset_names: [ emulation ]
+            workload_names: [ valve-malfunction-injector ]
+    outputs:
+      - data_type: raw.float32
+        name: valve_malfunction
+        targets:
+          - asset_names: [ emulation ]
+            workload_names: [ valve-malfunction ]
+    configuration:
+      kelvin:
+        app:
+          topics:
+            '#':
+              target: '{name}'
+              storage_type: buffer
+              storage_config:
+                window:
+                  seconds: 3
+                getter: value
+          checks:
+            gas_flow: { min_count: 2 }
+            valve_state: { min_count: 2 }
+      descriptor:
+        type: poller
+        period: 1.0
+      thresholds:
+        gas_flow_threshold:
+          title: Gas Flow Threshold
+          value: 5
+          type: float
+          units: mcf/day
+          default: 5
+    language:
+      python:
+        entry_point: valve_malfunction:App
+        requirements: requirements.txt
+      type: python
+  type: kelvin
+info:
+  description: valve-malfunction
+  name: valve-malfunction
+  title: valve-malfunction
+  version: 1.0.0
+spec_version: 4.0.0

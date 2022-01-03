@@ -1,0 +1,10 @@
+# This is where required Python libraries are listed
+# pandas
+# numpy
+# scikit-learn
+
+typing
+datetime
+pytest
+pandas
+numpy

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='data-labeling-app',
+    name='valve-malfunction-injector',
     version='0.0.1',
     author='Author',
     author_email='Email',

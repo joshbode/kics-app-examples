@@ -1,0 +1,27 @@
+app:
+  kelvin:
+    outputs:
+      - data_type: raw.float32
+        name: gas_flow
+        targets:
+          - asset_names: [ emulation ]
+            workload_names: [ valve-malfunction-injector ]
+      - data_type: raw.int32
+        name: valve_state
+        targets:
+          - asset_names: [ emulation ]
+            workload_names: [ valve-malfunction-injector ]
+    configuration:
+      data_file_path: data/data.csv
+    language:
+      python:
+        entry_point: valve_malfunction_injector:App
+        requirements: requirements.txt
+      type: python
+  type: kelvin
+info:
+  description: valve-malfunction-injector
+  name: valve-malfunction-injector
+  title: valve-malfunction-injector
+  version: 1.0.0
+spec_version: 4.0.0
