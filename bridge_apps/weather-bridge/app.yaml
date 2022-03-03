@@ -1,0 +1,19 @@
+spec_version: 4.0.0
+
+info:
+  name: weather-bridge
+  title: weather-bridge
+  description: weather-bridge
+  version: 1.0.0
+
+app:
+  type: bridge
+  bridge:
+    language:
+      type: python
+      python:
+        entry_point: weather_bridge:WeatherBridge
+        requirements: requirements.txt
+
+    configuration: {}
+    metrics_map: []

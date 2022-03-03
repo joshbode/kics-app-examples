@@ -1,0 +1,1 @@
+from .weather_bridge import WeatherBridge, WeatherBridgeConfiguration

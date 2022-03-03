@@ -1,0 +1,45 @@
+spec_version: 4.0.0
+
+info:
+  name: weather-bridge
+  title: weather-bridge
+  description: weather-bridge
+  version: 1.0.0
+
+app:
+  type: bridge
+  bridge:
+    language:
+      type: python
+      python:
+        entry_point: weather_bridge:WeatherBridge
+        requirements: requirements.txt
+
+    logging_level: DEBUG
+
+    configuration:
+      connection:
+        base_url: https://api.openweathermap.org/data/2.5
+        api_key: get_your_own_api_key
+      period: 5.0
+
+    metrics_map:
+      - name: melbourne_temp
+        data_type: raw.float64
+        asset_name: some-asset
+        access: RO
+        configuration:
+          city_name: Melbourne
+          state_code: VIC
+          country_code: AU
+          units: metric
+
+      - name: denver_temp
+        data_type: raw.float64
+        asset_name: some-asset
+        access: RO
+        configuration:
+          city_name: Denver
+          state_code: CO
+          country_code: US
+          units: imperial

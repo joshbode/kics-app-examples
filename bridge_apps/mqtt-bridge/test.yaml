@@ -1,0 +1,95 @@
+spec_version: 4.0.0
+
+info:
+  name: mqtt-bridge
+  title: mqtt-bridge
+  description: mqtt-bridge
+  version: 1.0.0
+
+app:
+  type: bridge
+  bridge:
+    language:
+      type: python
+      python:
+        entry_point: mqtt_bridge:MQTTBridge
+        requirements: requirements.txt
+
+    logging_level: DEBUG
+
+    configuration:
+      connection:
+        ip: tcp://kelvin-mqtt-broker.app
+        port: 1883
+        keepalive: 60
+
+      authentication:
+        type: credentials
+        credentials:
+          username: root
+          password: secret
+
+      payloads:
+        - topic: Foo/SomeAsset
+          qos: 1
+          type: json
+          json: {}
+          timestamp:
+            field_name: t
+            format: ms
+
+        - topic: Foo/AnotherAsset
+          qos: 1
+          type: json
+          timestamp:
+            field_name: t
+            format: ms
+
+        - topic: Bar/SomeAsset
+          qos: 0
+          type: json
+          timestamp:
+            field_name: t
+            format: ms
+
+    metrics_map:
+      - name: foo
+        data_type: raw.float64
+        asset_name: some-asset
+        access: RO
+        configuration:
+          topic: Foo/SomeAsset  # external broker topic
+          mapping:  # 1 or more field-mappings
+            - external: v  # field from parsed payload
+              internal: value  # raw.float64 field
+
+      - name: baz
+        data_type: raw.int32
+        asset_name: some-asset
+        access: RO
+        configuration:
+          topic: Foo/SomeAsset  # note - reuses topic
+          mapping:
+            - external: x  # uses a different field
+              internal: value
+
+      - name: foo
+        data_type: raw.float64
+        access: RO
+        asset_name: another-asset
+        configuration:
+          topic: Foo/AnotherAsset
+          mapping:
+            - external: v
+              internal: value
+
+      - name: bar
+        data_type: raw.text
+        asset_name: some-asset
+        access: RW
+        storage: node
+        configuration:
+          topic: Bar/SomeAsset
+          mapping:
+            - external: value
+              internal: value

@@ -1,0 +1,4 @@
+asyncio-mqtt
+orjson
+pydantic
+structlog
